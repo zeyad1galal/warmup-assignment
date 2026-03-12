@@ -1,5 +1,21 @@
 const fs = require("fs");
+//heelper method to convert 12-hour time to seconds
+function timeToSeconds(timeStr) {
+    let [time, period] = timeStr.split(" ");
+    let [hours, minutes, seconds] = time.split(":").map(Number);
 
+    period = period.toLowerCase();
+
+    if (period === "pm" && hours !== 12) {
+        hours += 12;
+    }
+
+    if (period === "am" && hours === 12) {
+        hours = 0;
+    }
+
+    return hours * 3600 + minutes * 60 + seconds;
+}
 // ============================================================
 // Function 1: getShiftDuration(startTime, endTime)
 // startTime: (typeof string) formatted as hh:mm:ss am or hh:mm:ss pm
