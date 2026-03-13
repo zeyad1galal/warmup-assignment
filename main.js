@@ -401,7 +401,6 @@ function getRequiredHoursPerMonth(textFile, rateFile, bonusCount, driverID, mont
         }
     }
 
-    // each bonus removes 2 hours
     totalSeconds -= bonusCount * (2 * 3600);
 
     if (totalSeconds < 0) totalSeconds = 0;
@@ -440,7 +439,7 @@ function getNetPay(driverID, actualHours, requiredHours, rateFile) {
 
     if (missingHours <= 0) return basePay;
 
-    // tier allowances
+    
     let allowed = 0;
     if (tier === 1) allowed = 50;
     else if (tier === 2) allowed = 20;
@@ -451,7 +450,7 @@ function getNetPay(driverID, actualHours, requiredHours, rateFile) {
 
     if (remainingMissing <= 0) return basePay;
 
-    // only full hours deducted
+  
     remainingMissing = Math.floor(remainingMissing);
 
     let deductionRatePerHour = Math.floor(basePay / 185);
